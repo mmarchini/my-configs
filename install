@@ -1,0 +1,35 @@
+#!/bin/bash
+
+src="$(pwd)/src"
+bkp="$(pwd)/bkp"
+dist="$(pwd)/dist"
+
+mkdir -p $dist
+mkdir -p $bkp
+
+# Clean up stuff
+echo "Clean up configs, making a backup first"
+rm -rf bkp/*
+rm -rf dist/*
+
+cp -r $HOME/.Xdefaults $bkp/
+cp -r $HOME/.i3 $bkp/
+cp -r $HOME/.i3status.conf $bkp/
+
+rm -rf $HOME/.Xdefaults
+rm -rf $HOME/.i3
+rm -rf $HOME/.i3status.conf
+
+# Build
+echo "Copy files from '$src' to '$dist'"
+cp -r $src/Xdefaults $dist
+cp -r $src/i3 $dist
+cp -r $src/i3status.conf $dist
+
+# Links
+echo "Link files from '$dist' to their respecitve paths"
+rm -rf 
+ln -s "$dist/Xdefaults" $HOME/.Xdefaults
+ln -s "$dist/i3" $HOME/.i3
+ln -s "$dist/i3status.conf" $HOME/.i3status.conf
+

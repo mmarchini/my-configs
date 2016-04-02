@@ -1,0 +1,50 @@
+URxvt*loginShell:true
+URxvt*background:#2a1f1d
+URxvt*foreground:#e0dbb7
+URxvt*scrollBar:false
+URxvt*saveLines:32767
+! URxvt*font:*-*-fixed-medium-r-normal--*-110-*-*-*-*-iso8859-1
+! URxvt*font: xft:DejaVu Sans Mono for Powerline:size=10,xft:FontAwesomeMonospace
+URxvt*font: xft:AwesomeDejaVu:size=10
+! URxvt*font: xft:FontAwesomeMonospace:pixelsize=10
+! URxvt*letterSpace: 4
+! URxvt*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
+
+!!!!!!!!!!
+! Colors !
+!!!!!!!!!! 
+
+! Black + DarkGrey
+*color0:  #2a1f1d
+*color8:  #573d26
+
+! DarkRed + Red
+*color1:  #be2d26
+*color9:  #e84627
+
+! DarkGreen + Green
+*color2:  #6ba18a
+*color10: #95d8ba
+
+! DarkYellow + Yellow
+*color3:  #e99d2a
+*color11: #d0d150
+
+! DarkBlue + Blue
+*color4:  #5a86ad
+*color12: #b8d3ed
+
+! DarkMagenta + Magenta
+*color5:  #ac80a6
+*color13: #d19ecb
+
+!DarkCyan + Cyan (both not tango)
+*color6:  #74a6ad
+*color14: #93cfd7
+
+! LightGrey + White
+*color7:  #e0dbb7
+*color15: #fff9d5
+
+
+*color16: #ff0000

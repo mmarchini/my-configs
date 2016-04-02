@@ -5,8 +5,8 @@ URxvt*scrollBar:false
 URxvt*saveLines:32767
 ! URxvt*font:*-*-fixed-medium-r-normal--*-110-*-*-*-*-iso8859-1
 ! URxvt*font: xft:DejaVu Sans Mono for Powerline:size=10,xft:FontAwesomeMonospace
-URxvt*font: xft:AwesomeDejaVu:size=10
-! URxvt*font: xft:FontAwesomeMonospace:pixelsize=10
+URxvt*font: xft:AwesomeDejaVu:size=9
+! URxvt*font: xft:FontAwesomeMonospace:pixelsize=9
 ! URxvt*letterSpace: 4
 ! URxvt*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
 

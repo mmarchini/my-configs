@@ -12,17 +12,18 @@ echo "Clean up configs, making a backup first"
 rm -rf bkp/*
 rm -rf dist/*
 
-cp -r $HOME/.Xdefaults $bkp/
-cp -r $HOME/.i3 $bkp/
-cp -r $HOME/.i3status.conf $bkp/
-cp -r $HOME/.tmux.conf $bkp/
-cp -r $HOME/bin/conky-i3bar $bkp/
+# cp -r $HOME/.Xdefaults $bkp/
+# cp -r $HOME/.i3 $bkp/
+# cp -r $HOME/.i3status.conf $bkp/
+# cp -r $HOME/.tmux.conf $bkp/
+# cp -r $HOME/bin/conky-i3bar $bkp/
 
 rm -rf $HOME/.Xdefaults
 rm -rf $HOME/.i3
 rm -rf $HOME/.i3status.conf
 rm -rf $HOME/.tmux.conf 
 rm -rf $HOME/bin/conky-i3bar
+rm -rf $HOME/.fonts/AwesomeDejaVu.ttf
 
 # Build
 echo "Copy files from '$src' to '$dist'"
@@ -32,8 +33,8 @@ cp -r $src/i3status.conf $dist
 cp -r $src/tmux.conf $dist
 mkdir -p $dist/bin/
 cp -r $src/bin/conky-i3bar $dist/bin/
-mkdir -p $dist/.fonts/
-cp -r $src/AwesomeDejaVu.tff $dist/.fonts/
+mkdir -p $dist/fonts/
+cp -r $src/AwesomeDejaVu.ttf $dist/fonts/
 
 # Links
 echo "Link files from '$dist' to their respecitve paths"
@@ -42,6 +43,7 @@ ln -s "$dist/Xdefaults" $HOME/.Xdefaults
 ln -s "$dist/i3" $HOME/.i3
 ln -s "$dist/i3status.conf" $HOME/.i3status.conf
 ln -s "$dist/tmux.conf" $HOME/.tmux.conf
-ln -s "$dist/AwesomeDejaVu.tff" $HOME/.fonts/
+ln -s "$dist/fonts/AwesomeDejaVu.ttf" $HOME/.fonts/AwesomeDejaVu.ttf
 ln -s "$dist/bin/conky-i3bar" $HOME/bin/conky-i3bar
+fc-cache -vf $HOME/.fonts/
 

@@ -23,6 +23,7 @@ rm -rf $HOME/.i3
 rm -rf $HOME/.i3status.conf
 rm -rf $HOME/.tmux.conf 
 rm -rf $HOME/bin/conky-i3bar
+rm -rf $HOME/.conkyrc
 rm -rf $HOME/.fonts/AwesomeDejaVu.ttf
 
 # Build
@@ -31,6 +32,7 @@ cp -r $src/Xdefaults $dist
 cp -r $src/i3 $dist
 cp -r $src/i3status.conf $dist
 cp -r $src/tmux.conf $dist
+cp -r $src/conkyrc $dist
 mkdir -p $dist/bin/
 cp -r $src/bin/conky-i3bar $dist/bin/
 mkdir -p $dist/fonts/
@@ -43,6 +45,7 @@ ln -s "$dist/Xdefaults" $HOME/.Xdefaults
 ln -s "$dist/i3" $HOME/.i3
 ln -s "$dist/i3status.conf" $HOME/.i3status.conf
 ln -s "$dist/tmux.conf" $HOME/.tmux.conf
+ln -s "$dist/conkyrc" $HOME/.conkyrc
 ln -s "$dist/fonts/AwesomeDejaVu.ttf" $HOME/.fonts/AwesomeDejaVu.ttf
 ln -s "$dist/bin/conky-i3bar" $HOME/bin/conky-i3bar
 fc-cache -vf $HOME/.fonts/

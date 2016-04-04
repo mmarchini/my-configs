@@ -12,11 +12,12 @@ URxvt*font: xft:AwesomeDejaVu:size=9
 
 !!!!!!!!!!
 ! Colors !
-!!!!!!!!!! 
+!!!!!!!!!!
 
 ! Black + DarkGrey
 *color0:  #2a1f1d
 *color8:  #573d26
+!         #9b6c4a
 
 ! DarkRed + Red
 *color1:  #be2d26
@@ -46,5 +47,24 @@ URxvt*font: xft:AwesomeDejaVu:size=9
 *color7:  #e0dbb7
 *color15: #fff9d5
 
-
-*color16: #ff0000
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #2a1f1d, #573d26, #573d26
+rofi.color-normal: #9b6c4a, #2a1f1d, #bc8f6e, #d0d150, #2a1f1d
+rofi.color-active: #e0dbb7, #286d4f, #fff9d5, #6ba18a, #fdf6e3
+rofi.color-urgent: #e0dbb7, #be2d26, #fdf6e3, #be2d26, #fdf6e3
+rofi.width: 400
+rofi.lines: 10
+rofi.fuzzy: true
+rofi.columns: 1
+rofi.font: DejaVu Sans 9
+rofi.locaction: 0
+rofi.padding: 2
+! rofi.yoffset: -100
+rofi.xoffset: 0
+rofi.fixed-num-lines: false
+! rofi.hmode: false
+rofi.terminal: x-terminal-emulator
+rofi.ssh-set-title: true

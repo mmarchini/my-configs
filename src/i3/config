@@ -148,6 +148,9 @@ new_window none
 
 hide_edge_borders both
 
+#
+# exec --no-startup-id gnome-settings-daemon
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -156,14 +159,15 @@ bar {
     statusline #93cfd7
     separator #573d26
 
-    focused_workspace  #6ba18a #6ba18a #e0dbb7
-    active_workspace   #9b6c4a #9b6c4a #e0dbb7
-    inactive_workspace #9b6c4a #9b6c4a #e0dbb7
+    focused_workspace  #9b6c4a #9b6c4a #e0dbb7
+    active_workspace   #2a1f1d #2a1f1d #e0dbb7
+    inactive_workspace #2a1f1d #2a1f1d #e0dbb7
     urgent_workspace   #be2d26 #be2d26 #e0dbb7
   }
   
-  # status_command i3status
-  status_command $HOME/bin/conky-i3bar
+  status_command py3status -c ~/.i3status.conf
+  # status_command $HOME/bin/conky-i3bar
   position top
-  font pango:FontAwesome 9
+  font pango:DejaVu Sans,FontAwesomeFull 9
+  tray_output none 
 }

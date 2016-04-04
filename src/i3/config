@@ -151,6 +151,8 @@ hide_edge_borders both
 
 exec --no-startup-id nitrogen --restore
 
+bindsym Print exec teiler
+
 #
 # exec --no-startup-id gnome-settings-daemon
 

@@ -51,10 +51,10 @@ URxvt*font: xft:AwesomeDejaVu:size=9
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
 rofi.color-enabled: true
-rofi.color-window: #2a1f1d, #573d26, #573d26
-rofi.color-normal: #9b6c4a, #2a1f1d, #bc8f6e, #d0d150, #2a1f1d
-rofi.color-active: #e0dbb7, #286d4f, #fff9d5, #6ba18a, #fdf6e3
-rofi.color-urgent: #e0dbb7, #be2d26, #fdf6e3, #be2d26, #fdf6e3
+rofi.color-window: #2a1f1d,#9b6c4a,#573d26
+rofi.color-normal: #9b6c4a,#2a1f1d,#bc8f6e,#d0d150,#2a1f1d
+rofi.color-active: #e0dbb7,#286d4f,#fff9d5,#6ba18a,#fdf6e3
+rofi.color-urgent: #e0dbb7,#be2d26,#fdf6e3,#be2d26,#fdf6e3
 rofi.width: 400
 rofi.lines: 10
 rofi.fuzzy: true

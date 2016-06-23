@@ -1,4 +1,5 @@
 URxvt*loginShell:true
+URxvt*depth: 32
 URxvt*background:#2a1f1d
 URxvt*foreground:#e0dbb7
 URxvt*scrollBar:false

@@ -1,0 +1,89 @@
+export TERM=xterm-256color
+# if [ -f ~/.bash_profile ]; then
+#     . ~/.bash_profile
+# fi
+#ALIASES#
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+#ALIASES#
+if [ -f ~/.bash_variables ]; then
+    . ~/.bash_variables
+fi
+
+export EDITOR="vim"
+
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+   . /etc/bash_completion
+fi
+
+#######################
+# Configurando o PATH #
+#######################
+
+export PATH=$HOME/bin:$HOME/.git-radar:$PATH
+
+######################
+# Configurando o PS1 #
+######################
+source /home/matheus/.fonts/fontawesome-regular.sh
+
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+reset_styles="\[$(tput sgr0)\]"
+bold_white="\[$(tput bold)$(tput setaf 7)\]"
+bold_brown="\[$(tput bold)$(tput setaf 0)\]"
+bold_yellow="\[$(tput setaf 3)$(tput bold)\]"
+bold_blue="\[$(tput sgr0)$(tput setaf 4)$(tput bold)\]"
+blue="\[$(tput sgr0)$(tput setaf 4)\]"
+purple="\[$(tput sgr0)$(tput setaf 5)\]"
+
+pwd_bold_white="\001$(tput bold)$(tput setaf 7)\002"
+pwd_bold_brown="\001$(tput bold)$(tput setaf 0)\002"
+pwd_bold_purple="\001$(tput bold)$(tput setaf 5)\002"
+pwd_bold_yellow="\001$(tput setaf 3)$(tput bold)\002"
+
+if [ "$COLORTERM" == "rxvt-xpm" ]; then
+    angle_right="> "
+    fa_git=$(echo -e "\u$CODEPOINT_OF_AWESOME_CODE_FORK")
+else
+    angle_right=$(echo -e "\u$CODEPOINT_OF_AWESOME_ANGLE_RIGHT")
+    fa_git=$(echo -e "\u$CODEPOINT_OF_AWESOME_GITHUB")
+fi
+
+function __workspace__() {
+    [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1;
+    if [ "$?" = "0" ]; then
+        git_root_path="$(git rev-parse --show-toplevel)" 
+        git_relative_path="$(python -c "print ('$(pwd -P)'.replace('$git_root_path', '') or '/')")";
+
+        printable="${pwd_bold_brown}$fa_git $pwd_bold_yellow$(basename $git_root_path) $git_relative_path";
+    else
+        printable="$pwd_bold_yellow$(python -c "print '$(pwd)'.replace('$HOME', '~')")";
+    fi;
+    echo -e "$printable";
+}
+
+export PS1="[$bold_blue\t$reset_styles] \$(__workspace__)$purple\$(__git_ps1)\n $blue$angle_right$reset_styles"
+
+
+export COWPATH=/usr/share/cowsay/cows:$HOME/.cowsay/cows
+cowsay -W 80 -f fox "$(bash_quotes)"
+
+# source /home/matheus/.oh-my-git/prompt.sh
+source /home/matheus/.fonts/fontawesome-regular.sh
+
+# pyenv initialization
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+export PYTHONPATH=/usr/lib/python2.7/dist-packages:/usr/local/lib/python2.7/dist-packages
+
+eval $(thefuck --alias)
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH=/data/matheus/workspace/Interno/sthima-tools/bin:$PATH
+source /data/matheus/workspace/Interno/sthima-scripts/bashrc

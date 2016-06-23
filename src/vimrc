@@ -1,0 +1,167 @@
+let @z = "€K1f'if,wif,wif,wi€K4€kl€K4F)i"
+let @x = ":s/^ *//eg€K1%%wi<<:s/, */,\\r/eg?widgets€klv€K1y/dict%€K1ppv%>%v%€kd>?dict%i"
+let @c = "@z?dict@x:s/widgets/widgets/g@c"
+
+let @a = ":0jv/od *=kcO€kbOAOA\"+p/currentframejd€K4/remove_objjd€K4/tee_maio€kbljd€K4:0:w"
+let @s = "/od =€kb*=/model\.f.wvf,€kl\"ky/€kb?log =OOA:r! echo %ifrom lists.f.d€K4A_lists import \"kpALists as €K1f.wvf €kly€K4pyyp:s/lists/forms/g/formsnnvU€ku€kudd:w"
+
+let g:pymode_folding = 0
+"let g:pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_lint_checkers = ['pyflakes' , 'mccabe']
+"let g:pymode_breakpoint_cmd = 'from IPython.core.debugger import Tracer; Tracer()()'
+
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+autocmd FileWritePre   * :call TrimWhiteSpace()
+autocmd FileAppendPre  * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre    * :call TrimWhiteSpace()
+
+syn on
+autocmd BufRead,BufNewFile *.kid setlocal ft=html
+
+command -nargs=+ SReplace call StepReplace(<f-args>)
+"makes use of register y
+function StepReplace(...)
+  if a:0 == 1
+    let @y = input("Replace with: ", @y)
+    let y = @y
+    if @y =~ "\\d\\+$"
+      let n = substitute(@y, ".\\{-}\\(\\d\\+\\)$", "\\1", "") + a:1
+      let @y = substitute(@y, "\\(.\\{-}\\)\\d\\+$", "\\1".n, "")
+    endif
+    return y
+  elseif a:0 == 3
+    let @y = a:2
+    execute "%s/".a:1."/\\=StepReplace(".a:3.")/".(&gdefault ? "" : "g")."c"
+  else
+    echo "Usage: SReplace <search> <substitute> <increment>"
+  endif
+endfunction
+
+set background=dark
+set number
+set nowrap
+
+" Use filetype detection and file-based automatic indenting.
+filetype plugin indent on
+" tabstop
+set ts=4
+" shiftwidth
+set sw=4
+" set smarttab
+set expandtab
+set shiftround 
+
+set laststatus=2
+set encoding=utf-8
+set t_Co=256
+let g:Powerline_symbols = 'fancy'
+
+set showcmd
+set showmatch
+set incsearch
+set ignorecase
+
+set ai
+set hlsearch
+set mouse=a
+nmap <C-k> :TagbarToggle<CR>
+nmap <C-f> :NERDTreeToggle<CR>
+nmap <C-p> :FZF<CR>
+let NERDTreeIgnore = ['\.pyc$']
+
+nmap <leader>f :FufFileWithCurrentBufferDir<CR>
+nmap <leader>b :FufBuffer<CR>
+nmap <leader>t :FufTaggedFile<CR>
+
+" Vundle Configuration "
+ set nocompatible               " be iMproved
+ filetype off                   " required!
+
+ set rtp+=~/.vim/bundle/Vundle.vim/
+ call vundle#begin()
+
+ " let Vundle manage Vundle
+ " required! 
+ Plugin 'gmarik/Vundle.vim'
+
+ " My Plugins here:
+ "
+ " vim-scripts repos
+ Plugin 'L9'
+ " Plugin 'FuzzyFinder'
+ Plugin 'https://github.com/scrooloose/nerdtree'
+ Plugin 'Tagbar'
+ " non github repos
+ Plugin 'https://github.com/Townk/vim-autoclose'
+ Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+ Plugin 'davidhalter/jedi-vim'
+ Plugin 'scrooloose/syntastic'
+ Plugin 'ntpeters/vim-better-whitespace'
+ Plugin 'terryma/vim-multiple-cursors'
+ Plugin 'tpope/vim-fugitive'
+ Plugin 'altercation/vim-colors-solarized'
+ Plugin 'gregsexton/MatchTag'
+ Plugin 'vim-scripts/matchit.zip'
+ Plugin 'ronny/birds-of-paradise.vim'
+ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+ " Plugin 'https://github.com/klen/python-mode'
+ " Plugin 'andviro/flake8-vim'
+ " Plugin 'digitaltoad/vim-jade'
+ Plugin 'groenewege/vim-less'
+ " ...
+ call vundle#end()            " required
+ filetype plugin indent on     " required!
+ "
+ " Brief help
+ " :PluginList          - list configured Plugins
+ " :PluginInstall(!)    - install(update) Plugins
+ " :PluginSearch(!) foo - search(or refresh cache first) for foo
+ " :PluginClean(!)      - confirm(or auto-approve) removal of unused Plugins
+ "
+ " see :h vundle for more details or wiki for FAQ
+ " NOTE: comments after Plugin command are not allowed..
+
+
+fu! MyTabLabel(n)
+let buflist = tabpagebuflist(a:n)
+let winnr = tabpagewinnr(a:n)
+let string = fnamemodify(bufname(buflist[winnr - 1]), ':t')
+return empty(string) ? '[unnamed]' : string
+endfu
+
+fu! MyTabLine()
+let s = ''
+for i in range(tabpagenr('$'))
+" select the highlighting
+    if i + 1 == tabpagenr()
+    let s .= '%#TabLineSel#'
+    else
+    let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    "let s .= '%' . (i + 1) . 'T'
+    " display tabnumber (for use with <count>gt, etc)
+    let s .= ' '. (i+1) . ' ' 
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+
+    if i+1 < tabpagenr('$')
+        let s .= ' |'
+    endif
+endfor
+return s
+endfu
+set tabline=%!MyTabLine()
+
+colorscheme birds-of-paradise
+if has('gui_running')
+    set guifont=Liberation\ Mono\ for\ Powerline  
+endif

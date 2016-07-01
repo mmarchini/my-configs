@@ -1,0 +1,6 @@
+# cd shortcuts
+export STHIMA_PATH="$HOME/Documents/"
+export STHIMA_CLIENTS="$HOME/workspace/Clientes"
+export STHIMA_INTERN="$HOME/workspace/Interno"
+export MIDAS_TEST_MAIL=matheus@sthima.com.br
+

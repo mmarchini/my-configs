@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+from time import sleep
+
+import i3ipc
+
+
+class SpotifyMode(object):
+
+    SPOTIFY_WORKSPACE = ""
+
+    def __init__(self):
+        self.i3 = i3ipc.Connection()
+
+        self.i3.on('binding::run', self.go_to_spotify)
+        self.i3.on('mode::spotify', self.on_spotify_mode)
+        self.i3.on('mode::default', self.return_to_default)
+
+    def main(self):
+        current_workspace = self.focused_workspace
+        self.workspace(self.SPOTIFY_WORKSPACE)
+        self.i3.command('exec spotify')
+        sleep(5)
+        self.workspace(current_workspace)
+        # I'll just assume we're in default mode
+        self.current_mode = 'default'
+        self.last_workspace = ''
+        self.i3.main()
+
+    @property
+    def focused_workspace(self):
+        focused = self.i3.get_tree().find_focused()
+        return focused.workspace().name
+
+    def workspace(self, name):
+        self.i3.command('workspace %s' % name)
+
+    def on_spotify_mode(self, i3, e):
+        self.current_mode = 'spotify'
+
+    def go_to_spotify(self, i3, e):
+        if not isinstance(e, i3ipc.BindingEvent):
+            return
+        if e.binding.symbol != "Return":
+            return
+        if self.focused_workspace != self.SPOTIFY_WORKSPACE:
+            self.last_workspace = self.focused_workspace
+            self.workspace(self.SPOTIFY_WORKSPACE)
+
+    def return_to_default(self, i3, e):
+        if self.last_workspace:
+            self.workspace(self.last_workspace)
+            self.last_workspace = None
+        self.current_mode = 'default'
+
+
+SpotifyMode().main()

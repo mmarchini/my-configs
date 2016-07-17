@@ -1,0 +1,35 @@
+# Midas shortcuts
+alias mcd="cd $\(midas_dir\)"
+# TurboGeras aliases 
+alias tg-shell="tg-admin --config=development.cfg shell"
+alias tg-sql-status="tg-admin --config=development.cfg sql status"
+alias nstat="netstat -lnp --protocol=inet"
+
+# Virtualenv
+alias activate=". .env/bin/activate"
+alias glup="gulp"
+
+# cd shortcuts
+# alias sthcli="cd $STHIMA_CLIENTS"
+# alias sthint="cd $STHIMA_INTERN"
+alias personal="cd $PERSONAL"
+
+# ls related
+alias ls="ls --color=auto"
+alias l="ls -lh"
+alias ll="l -a"
+
+# Vim related
+alias vim="vim -p"
+alias svim="sudo vim"
+
+# Others
+alias sthimatv="x11vnc --connect 192.168.1.50:5500"
+alias resetipython="rm -rf ~/.ipython/"
+alias gopen="gnome-open"
+
+# Cow Say!
+alias end="cowsay -f tux Acabou a reunião!"
+alias midastemplate="~/Documents/Sthima/dojos/MidasTemplates/template.py"
+
+alias duh="du -sh .[!.]* *"

@@ -30,7 +30,10 @@ class SpotifyMode(object):
     @property
     def focused_workspace(self):
         focused = self.i3.get_tree().find_focused()
-        return focused.workspace().name
+        workspace = focused.workspace()
+        if not workspace:
+            return None
+        return workspace.name
 
     def workspace(self, name):
         self.i3.command('workspace %s' % name)
@@ -39,9 +42,13 @@ class SpotifyMode(object):
         self.current_mode = 'spotify'
 
     def go_to_spotify(self, i3, e):
+        if not self.current_mode == 'spotify':
+            return
         if not isinstance(e, i3ipc.BindingEvent):
             return
         if e.binding.symbol != "Return":
+            return
+        if not self.focused_workspace:
             return
         if self.focused_workspace != self.SPOTIFY_WORKSPACE:
             self.last_workspace = self.focused_workspace
